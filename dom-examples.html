@@ -28,6 +28,7 @@
 
     <h1 id="main-title">Title of the page</h1>
     <button onclick="applyClassToH1()">Color the title</button>
+    <!-- "onclick" is what connects the click of the button to the execution of your functions -->
 
     <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt, odit! Ipsam mollitia,
         sapiente.
@@ -49,12 +50,14 @@
     <button onclick="generateList()">Generate list</button>
     <button onclick="hideContainer()">Hide Container</button>
     <div id="container">
-
+        <!-- new elements will be generated here -->
     </div>
 
     <button onclick="generateImage()">Generate single image</button>
     <button onclick="generateImages()">Generate image list</button>
-    <div id="image-container"></div>
+    <div id="image-container">
+        <!-- new images will be generated here -->
+    </div>
 
     <script>
         const h1 = document.querySelector("h1")
@@ -80,7 +83,7 @@
 
         const applyClassToH1 = function () {
 
-            h1.classList.toggle("selected")
+            h1.classList.toggle("selected") // toggles the class (adds it the first time and removes it the second etc..)
         }
 
         const generateList = function () {
@@ -89,11 +92,11 @@
             ul.style.backgroundColor = "aquamarine" // ul gets colored
 
 
-            for (let i = 0; i < 10; i++) {
-                const li = document.createElement("li")
-                li.innerText = "item " + (i + 1)
+            for (let i = 0; i < 10; i++) { // 10 cycles
+                const li = document.createElement("li") // creating 10 new list items
+                li.innerText = "item " + (i + 1) // changing the text for each one of them
 
-                ul.appendChild(li)
+                ul.appendChild(li) // appending every new li into the ul
             }
 
             container.appendChild(ul) // only here we are attaching it to the DOM, and becomes vibile!
@@ -101,14 +104,14 @@
 
         const hideContainer = function () {
             // const container = document.getElementById("container")
-            // container.hidden = !container.hidden
+            // container.hidden = !container.hidden // this adds the "hidden" attributes that will make it hidden
 
-            container.classList.toggle("hidden")
+            container.classList.toggle("hidden") // this leaverages the class we created in css to hide the element, toggling it on / off
         }
 
         const generateImage = function () {
             const imageContainer = document.getElementById("image-container")
-            imageContainer.innerHTML = ""
+            imageContainer.innerHTML = "" // this makes sure the container is emptied out before appending new elements
 
             const img = document.createElement("img") // <img src="" alt="" />
             img.src = "https://images.unsplash.com/photo-1665338091398-c71b9704abcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
@@ -121,18 +124,18 @@
 
         const generateImages = function () {
             const imageContainer = document.getElementById("image-container")
-            imageContainer.innerHTML = ""
+            imageContainer.innerHTML = "" // this makes sure the container is emptied out before appending new elements
 
             const arrOfImagesLinks = ["https://images.unsplash.com/photo-1665395508167-e8cd5df6a546?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80", "https://images.unsplash.com/photo-1665329929710-644672e5b705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "https://images.unsplash.com/photo-1665329927840-9769dcab7517?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"]
 
-            for (let i = 0; i < arrOfImagesLinks.length; i++) {
+            for (let i = 0; i < arrOfImagesLinks.length; i++) { // generating as many images as we have strings in the array
                 const img = document.createElement("img")
                 img.src = arrOfImagesLinks[i]
                 img.style.width = "33.333%"
-                img.style.aspectRatio = "1/1"
-                img.style.objectFit = "cover"
+                img.style.aspectRatio = "1/1" // this makes sure the image is always a square
+                img.style.objectFit = "cover" // this keeps the proportion of the image after the change in size and aspect ratio
 
-                imageContainer.appendChild(img)
+                imageContainer.appendChild(img) // appending each new image in the container 
             }
 
         }
